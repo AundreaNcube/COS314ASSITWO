@@ -93,4 +93,3 @@ Notes
 
 All randomness is controlled by a single seed passed via new Random(seed).
 Known optimum values are used only for reporting, never inside the algorithm logic.
-Tested on Java 17+
