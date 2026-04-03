@@ -55,7 +55,7 @@ cos314-assignment2/
 
 How to Compile
 Bash# From the project root
-javac -d out src/*.java src/ga/*.java src/ils/*.java src/stats/*.java
+javac -d out src/*.java src/ga/*.java src/ils/*.java stats/*.java
 
 # Create executable JAR
 jar cfe Assignment2.jar Main -C out .
