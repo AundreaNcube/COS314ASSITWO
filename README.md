@@ -7,7 +7,7 @@ The purpose of this assignment is to compare the effectiveness of a **population
 ## Team Members
 - Member 1 — TBD (Genetic Algorithm)
 - Member 2 — TBD (Iterated Local Search)
-- Member 3 — TBD (Infrastructure, Integration & Analysis)
+- Member 3 — mr-kalu (Infrastructure, Integration & Analysis)
 
 ---
 
@@ -36,9 +36,9 @@ cos314-assignment2/
 │   └── f10_l-d_kp_20_879
 ├── src/
 │   ├── KnapsackInstance.java
-│   ├── Solution.java
 │   ├── KnapsackReader.java
 │   ├── Main.java
+│   ├── Solution.java
 │   ├── ga/
 │   │   ├── GeneticAlgorithm.java
 │   │   ├── Selection.java
@@ -55,7 +55,12 @@ cos314-assignment2/
 
 How to Compile
 Bash# From the project root
-javac -d out src/*.java src/ga/*.java src/ils/*.java src/stats/*.java
+javac -d out src/*.java src/ga/*.java src/ils/*.java stats/*.java
+
+# alternative compilation like in C++
+make
+make run
+make clean
 
 # Create executable JAR
 jar cfe Assignment2.jar Main -C out .
