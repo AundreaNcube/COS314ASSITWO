@@ -57,6 +57,11 @@ How to Compile
 Bash# From the project root
 javac -d out src/*.java src/ga/*.java src/ils/*.java stats/*.java
 
+# alternative compilation like in C++
+make
+make run
+make clean
+
 # Create executable JAR
 jar cfe Assignment2.jar Main -C out .
 How to Run
