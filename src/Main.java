@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.*;
+import common.*;
+import ga.geneticAlgorithm;
 
 public class Main
 {
@@ -33,10 +35,10 @@ public class Main
         return solution;
     }
     
-    // Placeholder for GA (just calls greedy for now while I await AKT & Andrea to finish GA)
-    private static Solution ga(KnapsackInstance instance, Random random)
+    // Genetic Algorithm
+    private static Solution ga(KnapsackInstance inst, Random rand)
     {
-        return greedyPlaceholder(instance, random);
+        return new ga.geneticAlgorithm().run(inst, rand);
     }
     
     // Placeholder for ILS (just calls greedy for now while I await AKT & Andrea to finish GA)
@@ -131,8 +133,12 @@ public class Main
 
     //writes to the csv file
     private static void writeCSV(String filePath, List<String[]> results) throws IOException {
-        
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        // create parent directory if it doesn't exist
+        File file = new File(filePath);
+        if (file.getParentFile() != null) {
+            file.getParentFile().mkdirs();
+        }
+        try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
             for (String[] row : results) {
                 writer.println(String.join(",", row));
             }

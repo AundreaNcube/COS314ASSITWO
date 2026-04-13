@@ -5,7 +5,7 @@ The purpose of this assignment is to compare the effectiveness of a **population
 ---
 
 ## Team Members
-- Member 1 — TBD (Genetic Algorithm)
+- Member 1 — AKT (Genetic Algorithm)
 - Member 2 — TBD (Iterated Local Search)
 - Member 3 — mr-kalu (Infrastructure, Integration & Analysis)
 

@@ -1,0 +1,14 @@
+# Compiled output
+out/
+*.class
+
+# Results
+results/
+
+# IDE and tooling
+.vscode/
+.kiro/
+
+# OS
+.DS_Store
+Thumbs.db

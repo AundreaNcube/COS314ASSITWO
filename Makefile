@@ -9,16 +9,11 @@ OUT_DIR = out
 DATA_DIR = data
 RESULTS_DIR = results
 
-# Source files
-SOURCES = $(SRC_DIR)/KnapsackInstance.java \
-          $(SRC_DIR)/Solution.java \
-          $(SRC_DIR)/KnapsackReader.java \
-          $(SRC_DIR)/Main.java \
+# Source files (includes common package)
+SOURCES = $(SRC_DIR)/common/*.java \
           $(SRC_DIR)/ga/*.java \
-          $(SRC_DIR)/ils/*.java
-
-# Class files (not needed explicitly, but useful for clean)
-CLASSES = $(OUT_DIR)/*.class $(OUT_DIR)/ga/*.class $(OUT_DIR)/ils/*.class
+          $(SRC_DIR)/ils/*.java \
+          $(SRC_DIR)/Main.java
 
 # Default target
 all: compile
@@ -32,20 +27,29 @@ compile:
 run: compile
 	$(JAVA) -cp $(OUT_DIR) Main
 
-# Clean compiled files
+# Clean compiled files only
 clean:
 	rm -rf $(OUT_DIR)
+
+# Clean everything including results
+clean-all: clean
 	rm -rf $(RESULTS_DIR)
 
 # Clean and rebuild
 rebuild: clean compile
 
-# Create results directory
-results-dir:
-	mkdir -p $(RESULTS_DIR)
-
 # Run with specific seed (example: make run-seed SEED=42)
 run-seed: compile
 	@echo "$(SEED)" | $(JAVA) -cp $(OUT_DIR) Main
 
-.PHONY: all compile run clean rebuild help run-seed results-dir
+# Help
+help:
+	@echo "Available targets:"
+	@echo "  make          - compile"
+	@echo "  make run      - compile and run"
+	@echo "  make clean    - remove compiled classes"
+	@echo "  make clean-all- remove compiled classes and results"
+	@echo "  make rebuild  - clean then compile"
+	@echo "  make run-seed SEED=42 - run with a specific seed"
+
+.PHONY: all compile run clean clean-all rebuild run-seed help
