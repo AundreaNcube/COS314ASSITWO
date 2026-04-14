@@ -1,3 +1,5 @@
+package common;
+
 public class Solution
 {
     public boolean[] selected;
@@ -42,7 +44,7 @@ public class Solution
     {
         boolean valid;
 
-        if(totalWeight < instance.capacity)
+        if(totalWeight <= instance.capacity)
         {
             valid = true;
         }

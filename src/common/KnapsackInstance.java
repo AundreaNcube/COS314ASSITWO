@@ -1,3 +1,5 @@
+package common;
+
 //This is the data container that will store the Knapsack Instances
 public class KnapsackInstance
 {
