@@ -44,7 +44,8 @@ public class Main
     // Placeholder for ILS (just calls greedy for now while I await AKT & Andrea to finish GA)
     private static Solution ils(KnapsackInstance instance, Random random)
     {
-        return greedyPlaceholder(instance, random);
+        //return greedyPlaceholder(instance, random);
+        return new ils.iteratedLocalSearch().run(instance, random); // replace with actual ILS implementation
     }
 
     // I containerized the reading input so main is easy to follow
