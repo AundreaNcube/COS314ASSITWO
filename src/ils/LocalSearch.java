@@ -23,16 +23,16 @@ public class LocalSearch {
             int bestOUT = -1;
 
             for(int i = 0; i< inst.numItems; i++){
-            
+                boolean wasSelected = sol.selected[i];
                 sol.flipItem(i, inst);
                 if(sol.isValid(inst)){
-                    int gain = sol.selected[i] ? inst.values[i] : -inst.values[i];
+                    int gain = wasSelected ? -inst.values[i] : inst.values[i];
 
                     if(gain > bestOne){
                         bestOne = gain;
                         bestFlip = i;
                         bestIN =  -1;
-                        bestOUT =  1;
+                        bestOUT =  -1;
                     }
                 }
 

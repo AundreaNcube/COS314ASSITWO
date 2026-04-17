@@ -29,17 +29,13 @@ public class Solution
         {
             if (selected[i])
             {
-                totalValue = totalValue + instance.values[i];
-                totalWeight = totalWeight + instance.weights[i];
-            }
-            else
-            {
-                //do nothing
+                totalValue  += instance.values[i];
+                totalWeight += instance.weights[i];
             }
         }
     }
     
-    //true if solution respects capacity constraint or else it will return flase
+    // true if solution respects capacity constraint, false otherwise
     public boolean isValid(KnapsackInstance instance)
     {
         boolean valid;

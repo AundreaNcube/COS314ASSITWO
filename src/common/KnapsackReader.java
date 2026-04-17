@@ -17,7 +17,7 @@ public class KnapsackReader
         KNOWN_OPTIMUMS.put("f2_l-d_kp_20_878", 1024);
         KNOWN_OPTIMUMS.put("f3_l-d_kp_4_20", 35);
         KNOWN_OPTIMUMS.put("f4_l-d_kp_4_11", 23);
-        //KNOWN_OPTIMUMS.put("f5_l-d_kp_15_375", 481);
+        KNOWN_OPTIMUMS.put("f5_l-d_kp_15_375", 481); // decimal inst optimum which will is caled at read time*
         KNOWN_OPTIMUMS.put("f6_l-d_kp_10_60", 52);
         KNOWN_OPTIMUMS.put("f7_l-d_kp_7_50", 107);
         KNOWN_OPTIMUMS.put("f8_l-d_kp_23_10000", 9767);
@@ -26,12 +26,32 @@ public class KnapsackReader
         KNOWN_OPTIMUMS.put("knapPI_1_100_1000_1", 9147);
     }
     
+    // Returns true if any value/weight token in the file contains a decimal point
+    private static boolean hasDecimals(String filePath) throws IOException
+    {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath)))
+        {
+            reader.readLine(); // skip header
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                if (line.trim().isEmpty()) continue;
+                if (line.contains(".")) return true;
+            }
+        }
+        return false;
+    }
+
     // Reads a single instance file
     public static KnapsackInstance readInstance(String filePath) throws IOException
     {
         // Extract instance name from file path
         Path path = Paths.get(filePath);
         String name = path.getFileName().toString();
+
+        // Detect whether this instance uses decimal values - if so we scale by 1000
+        boolean decimal = hasDecimals(filePath);
+        int scale = decimal ? 1000 : 1;
         
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             // Read header line
@@ -42,28 +62,33 @@ public class KnapsackReader
             
             String[] headerParts = headerLine.trim().split("\\s+");
             int numItems = Integer.parseInt(headerParts[0]);
-            int capacity = Integer.parseInt(headerParts[1]);
+            int capacity = (int) Math.round(Double.parseDouble(headerParts[1]) * scale);
             
             // Initialize arrays
             int[] values = new int[numItems];
             int[] weights = new int[numItems];
             
-            // Read item lines
-            for (int i = 0; i < numItems; i++) {
+            // Parse as double first to handle decimal instances ,
+            // scale by 1000 for decimal files, leave integer files unchanged
+            for (int i = 0; i < numItems; i++)
+            {
                 String line = reader.readLine();
                 if (line == null) {
                     throw new IOException("Unexpected end of file: expected " + numItems + " items, got " + i);
                 }
                 
                 String[] parts = line.trim().split("\\s+");
-                values[i] = Integer.parseInt(parts[0]);
-                weights[i] = Integer.parseInt(parts[1]);
+                values[i]  = (int) Math.round(Double.parseDouble(parts[0]) * scale);
+                weights[i] = (int) Math.round(Double.parseDouble(parts[1]) * scale);
             }
             
             // Get known optimum (or -1 if not found)
+            // For decimal instances the optimum is also scaled
             int knownOptimum = KNOWN_OPTIMUMS.getOrDefault(name, -1);
             if (knownOptimum == -1) {
                 System.err.println("Warning: No known optimum found for instance: " + name);
+            } else if (decimal) {
+                knownOptimum = knownOptimum * scale;
             }
             
             return new KnapsackInstance(name, capacity, numItems, weights, values, knownOptimum);
@@ -75,7 +100,6 @@ public class KnapsackReader
     {
         List<KnapsackInstance> instances = new ArrayList<>();
         
-        // Define the order of files to read (based on your data folder)
         // if the order needs to change i'll change it and commit
         String[] filenames =
         {
@@ -83,7 +107,7 @@ public class KnapsackReader
             "f2_l-d_kp_20_878",
             "f3_l-d_kp_4_20",
             "f4_l-d_kp_4_11",
-            /*"f5_l-d_kp_15_375",*/
+            "f5_l-d_kp_15_375",
             "f6_l-d_kp_10_60",
             "f7_l-d_kp_7_50",
             "f8_l-d_kp_23_10000",

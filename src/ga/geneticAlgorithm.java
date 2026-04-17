@@ -81,7 +81,9 @@ public class geneticAlgorithm
     {
         Solution[] pop = new Solution[pop_size];
 
-        for (int s = 0; s < pop_size; s++)
+        pop[0] = greedyInit(inst);
+        //random
+        for (int s = 1; s < pop_size; s++)
         {
             Solution solu = new Solution(inst.numItems);
             for (int i = 0; i < inst.numItems; i++)
@@ -99,6 +101,28 @@ public class geneticAlgorithm
         }
 
         return pop;
+    }
+
+    private Solution greedyInit(KnapsackInstance inst)
+    {
+        Integer[] order = new Integer[inst.numItems];
+        for (int i = 0; i < inst.numItems; i++) order[i] = i;
+
+        java.util.Arrays.sort(order, (a, b) -> {
+            double ra = inst.weights[a] == 0 ? Double.MAX_VALUE : (double) inst.values[a] / inst.weights[a];
+            double rb = inst.weights[b] == 0 ? Double.MAX_VALUE : (double) inst.values[b] / inst.weights[b];
+            return Double.compare(rb, ra);
+        });
+
+        Solution sol = new Solution(inst.numItems);
+        for (int i : order)
+        {
+            if (sol.totalWeight + inst.weights[i] <= inst.capacity)
+            {
+                sol.flipItem(i, inst);
+            }
+        }
+        return sol;
     }
 
 

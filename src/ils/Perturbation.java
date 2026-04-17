@@ -5,17 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-/**
- * Perturbation class for Iterated Local Search (ILS) algorithm.
- * This class provides a method to perturb a given solution by flipping the selection of a certain number of items.
- * The strength of the perturbation is determined by the k, which specifies how many items to flip.
- * Strategy — random remove-then-add perturbation:
- *   1. Randomly remove k/2 currently included items.
- *   2. Randomly add    k/2 currently excluded items.
- *   3. Repair if the result is infeasible (overweight).
- */
 
-public class Perturbation {
+public class Perturbation
+{
     
     private final int k;
 
@@ -31,13 +23,8 @@ public class Perturbation {
         
     }
 
-    /**
-     * 
-     * @param curr the current best solution to perturb
-     * @param instance the knapsack problem instance
-     * @param rng   seeded Random instance shared across the ILS run
-     * @param ls    helper to repair 
-     */
+    
+    
     public Solution perturb(Solution curr, KnapsackInstance instance, Random rng, LocalSearch ls) {
         Solution perturbed = curr.copy();
         ArrayList<Integer> included = new ArrayList<>();
