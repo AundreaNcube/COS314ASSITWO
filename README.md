@@ -1,4 +1,4 @@
-# COS314 Assignment 2 — Knapsack Metaheuristics
+# COS314 Assignment 2 — 0/1 Knapsack Problem
 
 > Comparing a **Genetic Algorithm** (population-based) against **Iterated Local Search** (trajectory-based) on 11 instances of the 0/1 Knapsack Problem.
 
