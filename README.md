@@ -96,10 +96,10 @@ java -cp out Main
 
 ```bash
 # Build JAR
-jar cfe COS314_Assignment2.jar Main -C out .
+jar cfe AAD_Assignment2.jar r Main -C out .
 
 # Run JAR (must be run from project root where data/ folder exists)
-java -jar COS314_Assignment2.jar
+java -jar CAAD_Assignment2.jar 
 ```
 
 ---
