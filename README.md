@@ -98,8 +98,8 @@ java -cp out Main
 # Build JAR
 jar cfe AAD_Assignment2.jar r Main -C out .
 
-# Run JAR (must be run from project root where data/ folder exists)
-java -jar CAAD_Assignment2.jar 
+# Run JAR (from root)
+java -jar AAD_Assignment2.jar 
 ```
 
 ---
