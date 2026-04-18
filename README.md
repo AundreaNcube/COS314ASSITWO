@@ -6,11 +6,11 @@
 
 ## Team
 
-| Name | Student |
+| Name | Student Num |
 |---|---|
-| AKT | Member 1 |
-| Aundrea Ncube | Member 2 |
-| David Kalu | Member 3 |
+| AKT | u23539764 |
+| Aundrea Ncube | u22747363|
+| David Kalu | u23534975 |
 
 ---
 
@@ -55,9 +55,8 @@ COS314ASSITWO/
 ├── stats/
 │   └── WilcoxonTest.java
 ├── data/                        # 11 knapsack problem instances
-├── results/                     # CSV output (auto-generated)
-├── report/
-│   └── report.pdf
+├── results/                     # CSV output 
+├── Assignment2Report.pdf
 ├── Makefile
 └── README.md
 ```
@@ -90,7 +89,7 @@ Results are printed to the terminal and saved to `results/results.csv`:
 | Algorithm | GA or ILS |
 | Seed | Seed used for the run |
 | BestValue | Best solution value found |
-| KnownOptimum | Known optimal value (for reference only) |
+| KnownOptimum | Known optimal value |
 | Runtime(s) | Wall-clock time in seconds |
 
 ---
@@ -104,8 +103,8 @@ make wilcoxon
 ```
 
 Two tests are reported:
-- **Solution quality** — is there a significant difference in best values found?
-- **Runtime** — is ILS significantly faster than GA?
+- **Solution quality** - is there a significant difference in best values found?
+- **Runtime** - is ILS significantly faster than GA?
 
 Batch data is saved to `results/wilcoxon_data.csv`.
 
@@ -130,6 +129,6 @@ Where `n` = items, `W` = capacity, `vi` / `wi` = value and weight per item.
 
 ## Notes
 
-- Seed is requested at runtime — all randomness is reproducible
+- Seed is requested at runtime - all randomness is reproducible
 - Known optimums are used for reporting only, never inside algorithm logic
 - The JAR must be run from the project root so it can locate `data/`
