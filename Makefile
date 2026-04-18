@@ -63,7 +63,7 @@ help:
 	@echo "  make run                - compile and run (prompts for mode + seed)"
 	@echo "  make wilcoxon           - run Wilcoxon test on existing batch data"
 	@echo "  make batch-wilcoxon     - run 30-seed batch then Wilcoxon test"
-	@echo "  make jar                - build executable JAR (COS314_Assignment2.jar)"
+	@echo "  make jar                - build executable JAR (AAD_Assignment2.jar)"
 	@echo "  make clean              - remove compiled classes"
 	@echo "  make clean-all          - remove compiled classes and results"
 	@echo "  make rebuild            - clean then compile"
