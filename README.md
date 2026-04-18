@@ -8,7 +8,7 @@
 
 | Name | Student Num |
 |---|---|
-| AKT | u23539764 |
+| Amantle Temo | u23539764 |
 | Aundrea Ncube | u22747363|
 | David Kalu | u23534975 |
 
