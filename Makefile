@@ -10,7 +10,7 @@ OUT_DIR = out
 DATA_DIR = data
 RESULTS_DIR = results
 
-# Source files (includes common package)
+# Source files 
 SOURCES = $(SRC_DIR)/common/*.java \
           $(SRC_DIR)/ga/*.java \
           $(SRC_DIR)/ils/*.java \
@@ -52,20 +52,21 @@ rebuild: clean compile
 run-seed: compile
 	@echo "1\n$(SEED)" | $(JAVA) -cp $(OUT_DIR) Main
 
+# Build executable JAR (run from project root where data/ folder exists)
 jar: compile
 	jar cfe AAD_Assignment2.jar Main -C out .
-
 
 # Help
 help:
 	@echo "Available targets:"
-	@echo "  make              - compile"
-	@echo "  make run          - compile and run (prompts for mode + seed)"
-	@echo "  make wilcoxon     - run Wilcoxon test on existing batch data"
-	@echo "  make batch-wilcoxon - run 30-seed batch then Wilcoxon test"
-	@echo "  make clean        - remove compiled classes"
-	@echo "  make clean-all    - remove compiled classes and results"
-	@echo "  make rebuild      - clean then compile"
-	@echo "  make run-seed SEED=42 - single run with specific seed"
+	@echo "  make                    - compile"
+	@echo "  make run                - compile and run (prompts for mode + seed)"
+	@echo "  make wilcoxon           - run Wilcoxon test on existing batch data"
+	@echo "  make batch-wilcoxon     - run 30-seed batch then Wilcoxon test"
+	@echo "  make jar                - build executable JAR (COS314_Assignment2.jar)"
+	@echo "  make clean              - remove compiled classes"
+	@echo "  make clean-all          - remove compiled classes and results"
+	@echo "  make rebuild            - clean then compile"
+	@echo "  make run-seed SEED=42   - single run with specific seed"
 
-.PHONY: all compile run clean clean-all rebuild run-seed wilcoxon batch-wilcoxon help
+.PHONY: all compile run clean clean-all rebuild run-seed wilcoxon batch-wilcoxon jar help
