@@ -1,15 +1,15 @@
-# COS314 Assignment 2 — 0/1 Knapsack Problem
+# COS314 Assignment 2 — Knapsack Metaheuristics
 
-> Comparing a **Genetic Algorithm** (population-based) against **Iterated Local Search** (trajectory-based) on 11 instances of the 0/1 Knapsack Problem.
+Comparing a Genetic Algorithm against Iterated Local Search on 11 instances of the 0/1 Knapsack Problem.
 
 ---
 
 ## Team
 
-| Name | Student Num |
+| Name | StuNum |
 |---|---|
 | Amantle Temo | u23539764 |
-| Aundrea Ncube | u22747363|
+| Aundrea Ncube | u22747363 |
 | David Kalu | u23534975 |
 
 ---
@@ -54,8 +54,7 @@ COS314ASSITWO/
 │       └── Perturbation.java
 ├── stats/
 │   └── WilcoxonTest.java
-├── data/                        # 11 knapsack problem instances
-├── results/                     # CSV output 
+├── data/
 ├── Assignment2Report.pdf
 ├── Makefile
 └── README.md
@@ -89,22 +88,22 @@ Results are printed to the terminal and saved to `results/results.csv`:
 | Algorithm | GA or ILS |
 | Seed | Seed used for the run |
 | BestValue | Best solution value found |
-| KnownOptimum | Known optimal value |
+| KnownOptimum | Known optimal value (for reference only) |
 | Runtime(s) | Wall-clock time in seconds |
 
 ---
 
 ## Statistical Analysis
 
-After a batch run, execute the Wilcoxon Signed-Rank Test (one-tailed, α = 0.05):
+After a batch run, execute the Wilcoxon Signed-Rank Test (one-tailed, alpha = 0.05):
 
 ```bash
 make wilcoxon
 ```
 
 Two tests are reported:
-- **Solution quality** - is there a significant difference in best values found?
-- **Runtime** - is ILS significantly faster than GA?
+- Solution quality — is there a significant difference in best values found?
+- Runtime — is ILS significantly faster than GA?
 
 Batch data is saved to `results/wilcoxon_data.csv`.
 
@@ -121,14 +120,14 @@ v2 w2
 ...
 ```
 
-Where `n` = items, `W` = capacity, `vi` / `wi` = value and weight per item.
+Where n = items, W = capacity, vi and wi = value and weight per item.
 
-> `f5_l-d_kp_15_375` contains decimal values. The reader auto-detects this and scales all values, weights and capacity by ×1000 to keep integer arithmetic throughout.
+Note: f5_l-d_kp_15_375 contains decimal values. The reader auto-detects this and scales all values, weights and capacity by 1000 to keep integer arithmetic throughout.
 
 ---
 
 ## Notes
 
-- Seed is requested at runtime - all randomness is reproducible
+- Seed is requested at runtime — all randomness is reproducible
 - Known optimums are used for reporting only, never inside algorithm logic
-- The JAR must be run from the project root so it can locate `data/`
+- The JAR must be run from the project root so it can locate the data/ folder
