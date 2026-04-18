@@ -65,7 +65,7 @@ COS314ASSITWO/
 
 ## How to Compile and Run
 
-### Using Make (recommended)
+### Using Make
 
 ```bash
 # Compile
