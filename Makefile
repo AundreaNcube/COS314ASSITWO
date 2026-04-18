@@ -52,6 +52,10 @@ rebuild: clean compile
 run-seed: compile
 	@echo "1\n$(SEED)" | $(JAVA) -cp $(OUT_DIR) Main
 
+jar: compile
+	jar cfe AAD_Assignment2.jar Main -C out .
+
+
 # Help
 help:
 	@echo "Available targets:"
