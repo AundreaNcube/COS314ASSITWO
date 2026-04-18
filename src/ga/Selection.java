@@ -7,14 +7,14 @@ public class Selection
 
 ////////////{:":":":":":":}\\\\\\\\\\\\
 
-    public Solution select(Solution[] pop, int tour_size, KnapsackInstance inst, Random rng) 
+    public Solution select(Solution[] pop, int tour_size, KnapsackInstance inst, Random rand_gene) 
     {
         Solution best = null;
         int bestFit = Integer.MIN_VALUE;
 
         for (int i = 0; i < tour_size; i++)
         {
-            int idx = rng.nextInt(pop.length);
+            int idx = rand_gene.nextInt(pop.length);
             Solution candidate = pop[idx];
             int canidateFit = candidate.fitness(inst);
 

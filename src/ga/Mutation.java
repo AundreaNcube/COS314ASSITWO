@@ -7,11 +7,11 @@ public class Mutation
 {
 /////////////{[][][]}\\\\\\\\\\\\\
 
-    public void mutate(Solution solu, double pm, KnapsackInstance inst, Random rng)
+    public void mutate(Solution solu, double pm, KnapsackInstance inst, Random rand_gene)
     {
         for (int i = 0; i < inst.numItems; i++)
         {
-            if (rng.nextDouble() < pm)
+            if (rand_gene.nextDouble() < pm)
             {
                 solu.flipItem(i, inst); // flipItem updates totals incrementally*
             }

@@ -12,7 +12,7 @@ public class geneticAlgorithm
 
 
 ///////////{::}\\\\\\\\\\\\\
-    public Solution run(KnapsackInstance inst, Random rng) 
+    public Solution run(KnapsackInstance inst, Random rand_gene) 
     {
         double pm = 1.0 / inst.numItems;
         Selection slctr = new Selection();
@@ -20,7 +20,7 @@ public class geneticAlgorithm
         Mutation mut = new Mutation();
 
 
-        Solution[] pop = init(inst, rng);
+        Solution[] pop = init(inst, rand_gene);
         Solution globalBest = findBest(pop, inst).copy();
 
         for (int gen = 0; gen < max_gen; gen++)
@@ -37,17 +37,17 @@ public class geneticAlgorithm
             int i = 1;
             while (i < pop_size)
             {
-                Solution p1 = slctr.select(pop, tour_size, inst, rng);
-                Solution p2 = slctr.select(pop, tour_size, inst, rng);
-                Solution[] offspring = crossover.crossover(p1, p2, pc, inst, rng);
+                Solution p1 = slctr.select(pop, tour_size, inst, rand_gene);
+                Solution p2 = slctr.select(pop, tour_size, inst, rand_gene);
+                Solution[] offspring = crossover.crossover(p1, p2, pc, inst, rand_gene);
 
                 for (Solution child : offspring)
                 {
-                    mut.mutate(child, pm, inst, rng);
+                    mut.mutate(child, pm, inst, rand_gene);
 
                     if (!child.isValid(inst))
                     {
-                        repair(child, inst, rng);
+                        repair(child, inst, rand_gene);
                     }
 
                     if (i < pop_size)
@@ -77,7 +77,7 @@ public class geneticAlgorithm
 
 /////////{___________}\\\\\\\\\\\\\\\\
 
-    private Solution[] init(KnapsackInstance inst, Random rng)
+    private Solution[] init(KnapsackInstance inst, Random rand_gene)
     {
         Solution[] pop = new Solution[pop_size];
 
@@ -88,14 +88,14 @@ public class geneticAlgorithm
             Solution solu = new Solution(inst.numItems);
             for (int i = 0; i < inst.numItems; i++)
             {
-                solu.selected[i] = rng.nextBoolean();
+                solu.selected[i] = rand_gene.nextBoolean();
             }
 
             solu.recalculateTotals(inst);
 
             if (!solu.isValid(inst))
             {
-                repair(solu, inst, rng);
+                repair(solu, inst, rand_gene);
             }
             pop[s] = solu;
         }
@@ -128,7 +128,7 @@ public class geneticAlgorithm
 
 ///////////{::::::}\\\\\\\\\\\\\\\\  
 
-    private void repair(Solution solu, KnapsackInstance inst, Random rng)
+    private void repair(Solution solu, KnapsackInstance inst, Random rand_gene)
     {
     
         ArrayList<Integer> idxSelected = new ArrayList<>();
@@ -143,7 +143,7 @@ public class geneticAlgorithm
         //// this is whats called the Fisher-Yates shuffle *
         for (int i = idxSelected.size() - 1; i > 0; i--)
         {
-            int j = rng.nextInt(i + 1);
+            int j = rand_gene.nextInt(i + 1);
             int tmp = idxSelected.get(i);
             idxSelected.set(i, idxSelected.get(j));
             idxSelected.set(j, tmp);
